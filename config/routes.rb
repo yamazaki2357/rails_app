@@ -5,4 +5,6 @@ Rails.application.routes.draw do
   get '/contact', to: 'static_pages#contact'
   resources :microposts
   resources :users
+
+  get '/signup', to: 'users#new'
 end
