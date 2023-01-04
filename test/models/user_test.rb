@@ -8,4 +8,5 @@ class UserTest < ActiveSupport::TestCase
   test "should be vaild" do
     assert @user.valid?
   end
+  # テスト
 end
