@@ -1,5 +1,8 @@
 require "active_support/core_ext/integer/time"
 
+
+
+就労移行支援利用契約書類の説明と記入
 Rails.application.configure do
   # Settings specified here will take precedence over those in config/application.rb.
 
