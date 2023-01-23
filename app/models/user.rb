@@ -42,10 +42,13 @@ class User < ApplicationRecord
   end
 
   # 渡されたトークンがダイジェストと一致したらtrueを返す
-  def authenticated?(remember_token)
-    return false if remember_digest.nil?
+  # 2番目の引数tokenの名前を変更して一般化し、他の認証でも使えるようにしている（authenticated?メソッドの抽象化)
+  def authenticated?(attribute, token)
+    # モデル内にあるのでselfは省略できる
+    digest = send("#{attribute}_digest")
+    return false if digest.nil?
 
-    BCrypt::Password.new(remember_digest).is_password?(remember_token)
+    BCrypt::Password.new(digest).is_password?(token)
   end
 
   # ユーザーのログイン情報を破棄する
