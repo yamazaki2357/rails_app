@@ -69,3 +69,5 @@ class User < ApplicationRecord
       self.activation_digest = User.digest(activation_token)
     end
 end
+
+# 11.3.2 editアクションの有効化 から
