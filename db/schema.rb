@@ -13,9 +13,11 @@
 ActiveRecord::Schema[7.0].define(version: 2023_01_27_051048) do
   create_table "microposts", force: :cascade do |t|
     t.text "content"
-    t.integer "user_id"
+    t.integer "user_id", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.index ["user_id", "created_at"], name: "index_microposts_on_user_id_and_created_at"
+    t.index ["user_id"], name: "index_microposts_on_user_id"
   end
 
   create_table "users", force: :cascade do |t|
@@ -33,4 +35,5 @@ ActiveRecord::Schema[7.0].define(version: 2023_01_27_051048) do
     t.datetime "reset_sent_at"
   end
 
+  add_foreign_key "microposts", "users"
 end

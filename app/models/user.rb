@@ -1,4 +1,6 @@
 class User < ApplicationRecord
+  has_many :microposts, dependent: :destroy
+
   attr_accessor :remember_token, :activation_token, :reset_token
   before_save :downcase_email
   before_create :create_activation_digest
@@ -18,10 +20,10 @@ class User < ApplicationRecord
     # 渡された文字列のハッシュ値を返す
     def digest(string)
       cost = ActiveModel::SecurePassword.min_cost ? BCrypt::Engine::MIN_COST : BCrypt::Engine.cost
-  
+
       BCrypt::Password.create(string, cost: cost)
     end
-  
+
     # ランダムなトークンを返す
     def new_token
       SecureRandom.urlsafe_base64
