@@ -8,22 +8,13 @@
       </h1>
     </section>
   </aside>
-</div>
-
-<p style="color: green"><%= notice %></p>
-
-<%# <%= render @user %> %>
-
-<div>
-  <%= link_to "Edit this user", edit_user_path(@user) %> |
-  <%= link_to "Back to users", users_path %>
-  <br>
-  <br>
-  <%= "作成日時 + #{@user.created_at}" %>
-  <br>
-  <%= "更新日時 + #{@user.updated_at}" %>
-  <br>
-  <%= "現在時刻は + #{Time.new} + です"%>
-  <br>
-  <%= button_to "Destroy this user", @user, method: :delete %>
-</div>
+  <div class="col-md-8">
+    <% if @user.microposts.any? %>
+      <h3>Microposts (<%= @user.microposts.count %>)</h3>
+      <ol class="microposts">
+        <%= render @microposts %>
+      </ol>
+      <%= will_paginate @microposts %>
+    <% end %>
+  </div>
+</>
